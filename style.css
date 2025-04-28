@@ -1,0 +1,51 @@
+/*
+SemiBold 600
+Bold 700
+ExtraBold 800
+*/
+
+body {
+  margin: 0;
+  background-color: black;
+  color: #959595;
+  /* Вдохновение для создания "Интерактивного музея Московского Политеха" возникло в сердце нашей образовательной среды, где традиции науки и техники переплетаются с современными технологиями. */
+
+  font-family: "Gilroy";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: -0.015em;
+
+  color: #cdcdcd;
+}
+
+a {
+  color: #dedede;
+  text-decoration: none;
+}
+.header {
+  background: rgba(50, 50, 50, 0.7);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: 500;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header__nav {
+  display: flex;
+  gap: 60px;
+}
+
+.header__link {
+  font-weight: 500;
+  font-size: 18px;
+}
