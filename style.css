@@ -24,9 +24,20 @@ a {
   color: #dedede;
   text-decoration: none;
 }
+
+.container {
+  max-width: 1250px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 15px;
+}
 .header {
+  padding: 20px 0;
   background: rgba(50, 50, 50, 0.7);
   backdrop-filter: blur(10px);
+}
+
+.header .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
