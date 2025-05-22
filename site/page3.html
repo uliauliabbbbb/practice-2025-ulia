@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="Айгуль Байдавлетова" />
+    <meta name="describtion" content="Участники" />
+    <meta name="keywords" content="index, участники, html, интерактивный музей" />
+    <title>Interective Museum</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <img src="images/logo 2.svg" alt="logo" />
+          <span>Интерактивный музей</span>
+        </a>
+        <nav class="header__nav">
+          <a href="index.html" class="header__link">Главная</a>
+          <a href="page2.html" class="header__link">О проекте</a>
+          <a href="page3.html" class="header__link active">Участники</a>
+          <a href="page4.html" class="header__link">Журнал</a>
+          <a href="page5.html" class="header__link">Ресурсы</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="team-hero">
+        <div class="container">
+          <h1 class="section-title">Наша команда</h1>
+          <p class="section-subtitle">Творцы цифровой истории университета</p>
+        </div>
+      </section>
+
+      <section class="team-stats">
+        <div class="container">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-number">21</div>
+              <div class="stat-label">Участник</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">5</div>
+              <div class="stat-label">Направлений</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">12</div>
+              <div class="stat-label">Исследователей</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">5</div>
+              <div class="stat-label">Дизайнеров</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">4</div>
+              <div class="stat-label">Разработчика</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+          <div class="team-grid">
+            <!-- Тимлид -->
+            <div class="team-card" data-category="leadership">
+              <div
+                class="member-photo"
+                style="
+                  background-image: url('https://via.placeholder.com/300x300?text=Мария+Семенова');
+                "
+              ></div>
+              <h3>Мария Семенова</h3>
+              <p class="role">Тимлид</p>
+              <p class="bio">
+                Координирует работу всех отделов, отвечает за стратегию проекта
+              </p>
+            </div>
+
+            <!-- Дизайнеры -->
+            <div class="team-card" data-category="design">
+              <div
+                class="member-photo"
+                style="
+                  background-image: url('D:\хоккей\photo_2024-11-17_14-31-21 (2) копия.png');
+                "
+              ></div>
+              <h3>Айгуль Байдавлетова</h3>
+              <p class="role">Дизайнер</p>
+              <p class="bio">Создает визуальную концепцию и интерфейсы музея</p>
+            </div>
+
+            <div class="team-card" data-category="design">
+              <div
+                class="member-photo"
+                style="
+                  background-image: url('https://via.placeholder.com/300x300?text=Мария+Хила');
+                "
+              ></div>
+              <h3>Мария Хила</h3>
+              <p class="role">Дизайнер</p>
+              <p class="bio">Разрабатывает графические элементы и анимации</p>
+            </div>
+
+            <div class="team-card" data-category="design">
+              <div
+                class="member-photo"
+                style="
+                  background-image: url('https://via.placeholder.com/300x300?text=Вероника+Бабаева');
+                "
+              ></div>
+              <h3>Вероника Бабаева</h3>
+              <p class="role">Дизайнер</p>
+              <p class="bio">
+                Создает пользовательские сценарии и UX-прототипы
+              </p>
+            </div>
+
+            <div class="team-card" data-category="design">
+              <div
+                class="member-photo"
+                style="
+                  background-image: url('https://via.placeholder.com/300x300?text=Екатерина+Рютина');
+                "
+              ></div>
+              <h3>Екатерина Рютина</h3>
+              <p class="role">Дизайнер</p>
+              <p class="bio">Работает над визуальным стилем и брендингом</p>
+            </div>
+
+            <!-- 3D-моделлер -->
+            <div class="team-card" data-category="design">
+              <div
+                class="member-photo"
+                style="
+                  background-image: url('https://via.placeholder.com/300x300?text=Мария+Новикова');
+                "
+              ></div>
+              <h3>Мария Новикова</h3>
+              <p class="role">3D-моделлер</p>
+              <p class="bio">
+                Создает трехмерные модели университетских зданий
+              </p>
+            </div>
+
+            <!-- Исследователи -->
+            <div class="team-card" data-category="research">
+              <div
+                class="member-photo"
+                style="
+                  background-image: url('https://via.placeholder.com/300x300?text=Максим+Анашкин');
+                "
+              ></div>
+              <h3>Максим Анашкин</h3>
+              <p class="role">Исследователь-фуллстек</p>
+              <p class="bio">
+                Анализирует исторические данные и архитектурные особенности
+              </p>
+            </div>
+
+            <div class="team-card" data-category="research">
+              <div
+                class="member-photo"
+                style="
+                  background-image: url('https://via.placeholder.com/300x300?text=Аслан+Алимов');
+                "
+              ></div>
+              <h3>Аслан Алимов</h3>
+              <p class="role">Исследователь</p>
+              <p class="bio">Работает с архивными материалами и документами</p>
+            </div>
+
+            <div class="team-card" data-category="research">
+              <div
+                class="member-photo"
+                style="
+                  background-image: url('https://via.placeholder.com/300x300?text=Павел+Бойков');
+                "
+              ></div>
+              <h3>Павел Бойков</h3>
+              <p class="role">Исследователь</p>
+              <p class="bio">Изучает исторические события и персоналии</p>
+            </div>
+
+            <!-- Разработчики -->
+            <div class="team-card" data-category="development">
+              <div
+                class="member-photo"
+                style="
+                  background-image: url('https://via.placeholder.com/300x300?text=Анастасия+Мельникова');
+                "
+              ></div>
+              <h3>Анастасия Мельникова</h3>
+              <p class="role">Наставник-разработчик</p>
+              <p class="bio">Курирует техническую реализацию проекта</p>
+            </div>
+
+            <div class="team-card" data-category="development">
+              <div
+                class="member-photo"
+                style="
+                  background-image: url('https://via.placeholder.com/300x300?text=Федор+Логунов');
+                "
+              ></div>
+              <h3>Федор Логунов</h3>
+              <p class="role">Frontend-разработчик</p>
+              <p class="bio">Разрабатывает пользовательский интерфейс</p>
+            </div>
+
+            <div class="team-card" data-category="development">
+              <div
+                class="member-photo"
+                style="
+                  background-image: url('https://via.placeholder.com/300x300?text=Леонид+Сергиенко');
+                "
+              ></div>
+              <h3>Леонид Сергиенко</h3>
+              <p class="role">Frontend-разработчик</p>
+              <p class="bio">Реализует интерактивные элементы интерфейса</p>
+            </div>
+
+            <div class="team-card" data-category="development">
+              <div
+                class="member-photo"
+                style="
+                  background-image: url('https://via.placeholder.com/300x300?text=Сергей+Чуфаров');
+                "
+              ></div>
+              <h3>Сергей Чуфаров</h3>
+              <p class="role">Разработчик-фуллстек</p>
+              <p class="bio">Работает над серверной частью и API</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>© 2025 Интерактивный музей Московского политеха</p>
+      </div>
+    </footer>
+  </body>
+</html>
