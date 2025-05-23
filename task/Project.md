@@ -123,15 +123,9 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 
 ---
 
-## 📊 Иллюстрации
+## Форма и модель
 
-1. **Архитектура MVC**
-   ![MVC схема](https://upload.wikimedia.org/wikipedia/commons/9/9a/MVC-Process.svg)
-
-2. **Жизненный цикл HTTP-запроса**
-   ![ASP.NET Core Request Lifecycle](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/images/middleware-pipeline.png)
-
-3. **Форма и модель**
+1. **Форма и модель**
    ```
    [Браузер]
        ↓ (HTML Form)
