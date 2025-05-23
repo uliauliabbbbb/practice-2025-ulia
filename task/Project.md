@@ -1,127 +1,168 @@
-# Веб-сервер на C#
+# BasicWebServer — Учебный проект на ASP.NET Core MVC
 
-## Описание
+## Исследование предметной области
 
-Этот проект реализует учебный веб-сервер на C# с поддержкой маршрутизации, контроллеров, обработки сессий, cookies и авторизации пользователей.
+### Что такое Web Server?
 
-## Архитектура
+Веб-сервер — это приложение, принимающее HTTP-запросы и отправляющее HTTP-ответы. Он может обслуживать статический контент (HTML, CSS, JS) или динамический (через backend-логику, базы данных и т.д.).
 
-- **HttpServer** — запускает сервер, обрабатывает подключения, маршрутизирует запросы.
-- **RoutingTable** — хранит сопоставления маршрутов и методов контроллеров.
-- **Controller** — базовый класс контроллеров, реализует стандартные ответы.
-- **HomeController, UsersController** — реализуют обработку страниц, форм, авторизации.
-- **Session, Cookies** — обеспечивают хранение пользовательских данных между запросами.
+### Почему ASP.NET Core?
 
-## Основные маршруты
+- ✔ Кроссплатформенность
+- ✔ Высокая производительность
+- ✔ Поддержка архитектуры MVC (Model-View-Controller)
+- ✔ Интеграция с Razor Pages, Blazor, REST API
 
-| URL          | Метод | Контроллер      | Метод        | Назначение           |
-| ------------ | ----- | --------------- | ------------ | -------------------- |
-| /            | GET   | HomeController  | Index        | Главная страница     |
-| /HTML        | GET   | HomeController  | Html         | HTML-форма           |
-| /HTML        | POST  | HomeController  | HtmlFormPost | Обработка формы      |
-| /Content     | GET   | HomeController  | Content      | Работа с файлами     |
-| /Cookies     | GET   | HomeController  | Cookies      | Работа с cookies     |
-| /Session     | GET   | HomeController  | Session      | Работа с сессией     |
-| /Login       | GET   | UsersController | Login        | Страница входа       |
-| /Login       | POST  | UsersController | LogInUser    | Обработка входа      |
-| /Logout      | GET   | UsersController | Logout       | Выход                |
-| /UserProfile | GET   | UsersController | GetUserData  | Профиль пользователя |
+---
 
-flowchart LR
-Client -->|HTTP запрос| HttpServer
-HttpServer --> Router
-Router -->|Маршрут| Controller
-Controller -->|Ответ| HttpServer
-HttpServer -->|HTTP ответ| Client
+## Создание технологии
 
-## Пример запуска
+Проект представляет собой простой сервер на ASP.NET Core MVC с возможностью:
 
-await new HttpServer(routes => routes
-.MapGet("/", c => c.Index())
-.MapGet("/Login", c => c.Login())
-.MapPost("/Login", c => c.LogInUser())
-// ... другие маршруты
-).Start();
+- возврата простого текста и HTML,
+- отображения Razor-страниц,
+- обработки HTML-форм с передачей данных в модель.
 
-## Основные маршруты
+---
 
-| URL          | Метод | Контроллер      | Метод        | Назначение           |
-| ------------ | ----- | --------------- | ------------ | -------------------- |
-| /            | GET   | HomeController  | Index        | Главная страница     |
-| /HTML        | GET   | HomeController  | Html         | HTML-форма           |
-| /HTML        | POST  | HomeController  | HtmlFormPost | Обработка формы      |
-| /Content     | GET   | HomeController  | Content      | Работа с файлами     |
-| /Cookies     | GET   | HomeController  | Cookies      | Работа с cookies     |
-| /Session     | GET   | HomeController  | Session      | Работа с сессией     |
-| /Login       | GET   | UsersController | Login        | Страница входа       |
-| /Login       | POST  | UsersController | LogInUser    | Обработка входа      |
-| /Logout      | GET   | UsersController | Logout       | Выход                |
-| /UserProfile | GET   | UsersController | GetUserData  | Профиль пользователя |
+## 🛠 Пошаговое руководство по созданию
 
-## Пример запуска
+### Шаг 1. Установка SDK
 
-await new HttpServer(routes => routes
-.MapGet("/", c => c.Index())
-.MapGet("/Login", c => c.Login())
-.MapPost("/Login", c => c.LogInUser())
-// ... другие маршруты
-).Start();
+Скачайте и установите [.NET SDK](https://dotnet.microsoft.com/download).
 
-## Пример контроллера
+### Шаг 2. Создание проекта
 
+```bash
+dotnet new mvc -n BasicWebServer
+cd BasicWebServer
+```
+
+### Структура:
+
+```plaintext
+BasicWebServer/
+├── Controllers/
+├── Models/
+├── Views/
+├── Program.cs
+├── Startup.cs
+```
+
+---
+
+## 💡 Примеры кода
+
+### Контроллер: HomeController.cs
+
+```csharp
 public class HomeController : Controller
 {
-public Response Index() => Text("Hello from the server!");
-public Response Html() => View();
-public Response HtmlFormPost()
+    public IActionResult Content()
+    {
+        return Content("Простой текст", "text/plain");
+    }
+
+    public IActionResult Html()
+    {
+        return Content("<h1>HTML контент</h1>", "text/html");
+    }
+
+    public IActionResult HtmlFormPost() => View();
+
+    [HttpPost]
+    public IActionResult HtmlFormPost(FormViewModel model)
+    {
+        return Content($"Привет, {model.Name}. Тебе {model.Age} лет.");
+    }
+}
+```
+
+---
+
+### Модель: FormViewModel.cs
+
+```csharp
+public class FormViewModel
 {
-var name = Request.Form["Name"];
-var age = Request.Form["Age"];
-var model = new FormViewModel() { Name = name, Age = int.Parse(age) };
-return View(model);
+    public string Name { get; set; }
+    public int Age { get; set; }
 }
-}
+```
 
-## Пример контроллера
+---
 
-public class HomeController : Controller
+### Представление Razor: HtmlFormPost.cshtml
+
+```html
+<form asp-controller="Home" asp-action="HtmlFormPost" method="post">
+  <label>Имя: <input type="text" name="Name" /></label><br />
+  <label>Возраст: <input type="number" name="Age" /></label><br />
+  <button type="submit">Отправить</button>
+</form>
+```
+
+---
+
+## 🧭 Конфигурация маршрутов
+
+В `Startup.cs`:
+
+```csharp
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
-public Response Index() => Text("Hello from the server!");
-public Response Html() => View();
-public Response HtmlFormPost()
-{
-var name = Request.Form["Name"];
-var age = Request.Form["Age"];
-var model = new FormViewModel() { Name = name, Age = int.Parse(age) };
-return View(model);
+    app.UseRouting();
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=Home}/{action=Content}/{id?}");
+    });
 }
-}
+```
 
-## Работа с сессией и cookies
+---
 
-- Сессии реализованы через уникальный идентификатор, который хранится в cookies.
-- При авторизации в сессию записывается идентификатор пользователя.
+## 📊 Иллюстрации
 
-## Диаграмма классов
+1. **Архитектура MVC**
+   ![MVC схема](https://upload.wikimedia.org/wikipedia/commons/9/9a/MVC-Process.svg)
 
-classDiagram
-class Controller {
-+Request Request
-+Text()
-+Html()
-+View()
-+Redirect()
-}
-class HomeController
-class UsersController
-Controller <|-- HomeController
-Controller <|-- UsersController
+2. **Жизненный цикл HTTP-запроса**
+   ![ASP.NET Core Request Lifecycle](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/images/middleware-pipeline.png)
 
-text
+3. **Форма и модель**
+   ```
+   [Браузер]
+       ↓ (HTML Form)
+   [Контроллер]
+       ↓ (Model Binding)
+   [Модель]
+       ↓
+   [HTML Ответ]
+   ```
 
-## Запуск
+---
 
-1. Склонируйте репозиторий.
-2. Откройте проект в Visual Studio.
-3. Соберите и запустите проект.
-4. Перейдите по адресу http://localhost:8080/
+## 🔧 Запуск проекта
+
+```bash
+dotnet build
+dotnet run
+```
+
+Откройте браузер: http://localhost:5000/Home/HtmlFormPost
+
+---
+
+## 📁 Рекомендуемая структура репозитория
+
+```plaintext
+BasicWebServer/
+├── README.md
+├── PROJECT_DESCRIPTION.md
+├── Controllers/
+├── Models/
+├── Views/
+└── Startup.cs
+```
